@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>重访 · 赏金女王故事集</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #f1f7fa;
+      font-family: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #1f3a3f;
+      line-height: 1.7;
+      padding: 0 1.2rem;
+    }
+
+    .page {
+      max-width: 780px;
+      margin: 2.8rem auto;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(2px);
+      border-radius: 52px 52px 36px 36px;
+      box-shadow: 0 8px 24px rgba(32, 94, 100, 0.08);
+      padding: 2.4rem 2rem 2.8rem;
+      transition: box-shadow 0.3s;
+    }
+
+    /* 开场短句 —— 像老朋友问候 */
+    .greeting {
+      font-size: 2.2rem;
+      font-weight: 350;
+      letter-spacing: 0.02em;
+      color: #205e64;
+      border-left: 5px solid #3cacb0;
+      padding-left: 1.1rem;
+      margin-bottom: 2rem;
+      line-height: 1.3;
+      word-break: break-word;
+    }
+
+    .greeting em {
+      font-style: normal;
+      background: linear-gradient(145deg, #327a80 0%, #4bb5b9 80%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 450;
+    }
+
+    /* 承接段落 */
+    .story-line {
+      background: #e3f0f2;
+      padding: 1.6rem 1.8rem;
+      border-radius: 30px 12px 30px 12px;
+      margin-bottom: 2.6rem;
+      box-shadow: inset 0 1px 3px rgba(58, 140, 145, 0.1);
+    }
+
+    .story-line p {
+      margin-bottom: 1rem;
+      color: #1e4b50;
+    }
+
+    .story-line p:last-child {
+      margin-bottom: 0;
+    }
+
+    .inline-link {
+      color: #1d7e84;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 2px dotted #68c2c6;
+      transition: border 0.2s;
+    }
+
+    .inline-link:hover {
+      border-bottom: 2px solid #1a6f74;
+      color: #11555a;
+    }
+
+    /* 特点网格卡片 */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin: 2.4rem 0 2.8rem;
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 28px 10px 28px 10px;
+      padding: 1.3rem 1.2rem;
+      box-shadow: 0 4px 12px rgba(35, 110, 117, 0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid #daeff1;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 18px rgba(32, 94, 100, 0.12);
+      border-color: #9bd5d9;
+    }
+
+    .feature-card h3 {
+      font-size: 1.2rem;
+      font-weight: 520;
+      color: #216268;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .feature-card h3::before {
+      content: "◈";
+      color: #48b2b7;
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
+
+    .feature-card p {
+      font-size: 0.95rem;
+      color: #2e5b61;
+    }
+
+    /* 温和的场景 + 提示 */
+    .soft-note {
+      background: #f6fbfc;
+      padding: 1.6rem 1.8rem;
+      border-radius: 36px 12px 36px 12px;
+      margin: 1.8rem 0 2rem;
+      border-left: 6px solid #5dbcc1;
+    }
+
+    .soft-note p {
+      margin-bottom: 0.7rem;
+      color: #1b4c52;
+    }
+
+    .soft-note p:last-child {
+      margin-bottom: 0;
+    }
+
+    .soft-note .tag {
+      display: inline-block;
+      background: #cae6e9;
+      padding: 0.1rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      letter-spacing: 0.3px;
+      color: #195b61;
+      margin-right: 6px;
+    }
+
+    /* FAQ 摘要 —— 用问答卡片代替完整列表 */
+    .faq-mini {
+      margin: 2.2rem 0 1.2rem;
+    }
+
+    .faq-mini details {
+      background: white;
+      border-radius: 24px 8px 24px 8px;
+      padding: 0.9rem 1.4rem;
+      margin-bottom: 0.9rem;
+      box-shadow: 0 2px 8px rgba(32, 94, 100, 0.04);
+      border: 1px solid #cde3e6;
+      transition: background 0.2s;
+    }
+
+    .faq-mini details[open] {
+      background: #eff7f8;
+    }
+
+    .faq-mini summary {
+      font-weight: 530;
+      color: #1b5b61;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .faq-mini summary::before {
+      content: "▹";
+      color: #389ca2;
+      font-size: 1.2rem;
+    }
+
+    .faq-mini details[open] summary::before {
+      content: "▿";
+    }
+
+    .faq-mini .answer {
+      margin-top: 0.7rem;
+      padding-left: 1rem;
+      border-left: 3px solid #6ac4c9;
+      color: #1f5157;
+    }
+
+    /* 温和结尾 */
+    .gentle-footer {
+      margin-top: 3rem;
+      border-top: 1px solid #bfdbdf;
+      padding-top: 1.8rem;
+      text-align: center;
+      font-size: 0.95rem;
+      color: #39747a;
+    }
+
+    .gentle-footer a {
+      color: #1b7278;
+      text-decoration: none;
+      border-bottom: 1px dotted #6ab3b8;
+      transition: 0.2s;
+    }
+
+    .gentle-footer a:hover {
+      border-bottom: 2px solid #1f7d84;
+    }
+
+    .gentle-footer .small-note {
+      display: block;
+      margin-top: 0.8rem;
+      font-size: 0.85rem;
+      color: #659398;
+    }
+
+    /* 响应式 */
+    @media (max-width: 500px) {
+      .page {
+        padding: 1.6rem 1.2rem 2rem;
+        border-radius: 36px 36px 24px 24px;
+      }
+
+      .greeting {
+        font-size: 1.7rem;
+        padding-left: 0.8rem;
+      }
+
+      .story-line {
+        padding: 1.2rem 1.2rem;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .feature-card {
+        padding: 1rem 1rem;
+      }
+
+      .soft-note {
+        padding: 1.2rem 1.2rem;
+      }
+    }
+
+    @media (min-width: 540px) and (max-width: 700px) {
+      .feature-grid {
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <!-- 开场短句 -->
+  <div class="greeting">
+    又见面了。<br>
+    这里依然是 <em>赏金女王</em> 的安静角落。
+  </div>
+
+  <!-- 承接段落：再次访问与收藏的语境 -->
+  <div class="story-line">
+    <p>
+      有些页面像书签一样，隔段时间就想回来翻一翻。<strong>赏金女王</strong> 就是其中之一。
+      从最初偶然看到那抹蓝绿色开始，到后来每次打开都有新的细节浮现——像是慢慢熟悉一个老朋友。
+    </p>
+    <p>
+      如果你也习惯把喜欢的地方放在收藏夹里，或许会懂这种感觉。而这也正是 <a href="https://index-queen-of-bounty.com" class="inline-link">赏金女王</a> 带给人的印象：不喧哗，但总留得住目光。
+    </p>
+  </div>
+
+  <!-- 特点列表（网格卡片） -->
+  <div class="feature-grid">
+    <div class="feature-card">
+      <h3>节奏舒适</h3>
+      <p>没有大段堆砌的信息，段落之间留着呼吸的空隙。读起来不赶，像午后翻杂志。</p>
+    </div>
+    <div class="feature-card">
+      <h3>色调统一</h3>
+      <p>蓝绿作为点缀色贯穿始终，既不冷淡也不甜腻，刚好让页面有了一种「可以常来」的质感。</p>
+    </div>
+    <div class="feature-card">
+      <h3>卡片叙事</h3>
+      <p>特点用独立卡片呈现，每张都像一个短篇片段，适合碎片时间慢慢看，也适合一口气读完。</p>
+    </div>
+    <div class="feature-card">
+      <h3>移动顺手</h3>
+      <p>缩放在手机屏幕上依然清晰，卡片间距和字体都经过调整，拇指滑动时很跟手。</p>
+    </div>
+  </div>
+
+  <!-- 场景 + 提示（温和语气） -->
+  <div class="soft-note">
+    <p>
+      <span class="tag">📌 收藏提示</span>
+      有些人会把 <a href="https://index-queen-of-bounty.com" class="inline-link">赏金女王</a> 放进浏览器的书签栏，也有人在主页上给了一个位置。
+      不管是哪种方式，回来的那一刻总有种「嗯，还是这里」的安定感。
+    </p>
+    <p>
+      <span class="tag">🌿 持续关注</span>
+      网站内容会随着季节或想法慢慢更新，每次变化都不大，但仔细看会发现新的句子、微调的配色，或者一张新的小图。
+      适合隔段时间再逛逛，像翻自己的笔记本。
+    </p>
+  </div>
+
+  <!-- FAQ 摘要（只列两个，显得轻松） -->
+  <div class="faq-mini">
+    <details>
+      <summary>「赏金女王」是什么类型的站点？</summary>
+      <div class="answer">
+        它是一个以个人表达和视觉日记为核心的页面，内容围绕日常观察、小叙事和蓝绿色调展开。
+        不定义成工具或博客，更像一个可以反复访问的安静空间。
+      </div>
+    </details>
+    <details>
+      <summary>为什么推荐收藏而不是频繁刷新？</summary>
+      <div class="answer">
+        因为更新节奏偏慢，每次变化都带着一点心意。收藏起来，隔一两周回来，反而更容易感受到细微的调整和积累。
+      </div>
+    </details>
+  </div>
+
+  <!-- 温和结尾 -->
+  <div class="gentle-footer">
+    <p>
+      感谢再次光临。<br>
+      如果你愿意，可以把 <a href="https://index-queen-of-bounty.com">赏金女王</a> 留在书签深处，
+      下次想起时，它大概还在这里，带着熟悉的蓝绿色调。
+    </p>
+    <span class="small-note">—— 每次回访，都有新角落 ——</span>
+  </div>
+</div>
+</body>
+</html>
