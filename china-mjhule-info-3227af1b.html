@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资料索引 · 麻将胡了 信息整理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #fde7d6 0%, #fbc9b0 45%, #f5a884 100%);
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 1rem;
+            line-height: 1.6;
+            color: #2f2a24;
+        }
+
+        .page-wrapper {
+            max-width: 860px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hero-card {
+            background: #fffcf9;
+            border-radius: 36px;
+            box-shadow: 0 12px 28px rgba(160, 80, 40, 0.12), 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 2.2rem 2.4rem;
+            margin-bottom: 2rem;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .hero-card h1 {
+            font-size: 2.2rem;
+            font-weight: 520;
+            letter-spacing: -0.01em;
+            color: #401f0f;
+            border-left: 6px solid #e07b4a;
+            padding-left: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-card .sub {
+            font-size: 1rem;
+            color: #6a4d39;
+            margin-top: -0.2rem;
+            margin-bottom: 1.4rem;
+            padding-left: 1.8rem;
+            opacity: 0.75;
+            font-weight: 370;
+        }
+
+        .intro-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem 0.8rem;
+            margin-top: 0.8rem;
+        }
+
+        .intro-grid p {
+            flex: 1 1 240px;
+            background: #f7f0ea;
+            padding: 0.8rem 1.2rem;
+            border-radius: 60px;
+            font-size: 0.95rem;
+            color: #3d2c1f;
+            border: 1px solid #eddccf;
+        }
+
+        .card-section {
+            background: #fffcf9;
+            border-radius: 36px;
+            box-shadow: 0 8px 20px rgba(110, 60, 30, 0.07);
+            padding: 2rem 2.2rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .card-section h2 {
+            font-size: 1.5rem;
+            font-weight: 470;
+            color: #3a2417;
+            margin-bottom: 1rem;
+            display: inline-block;
+            border-bottom: 3px solid #e9b18b;
+            padding-bottom: 0.25rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem 1.2rem;
+            margin: 1.2rem 0 0.2rem;
+        }
+
+        .feature-list li {
+            background: #f5ede6;
+            padding: 0.9rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.96rem;
+            font-weight: 420;
+            color: #35271c;
+            border-left: 4px solid #cf8d65;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .usage-suggest {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin: 1.2rem 0 0.2rem;
+            background: #f8efe7;
+            padding: 1.2rem 1.6rem;
+            border-radius: 28px;
+        }
+
+        .usage-suggest p {
+            font-size: 0.96rem;
+        }
+
+        .badge-tag {
+            display: inline-block;
+            background: #e1c3b0;
+            color: #2a1c12;
+            border-radius: 40px;
+            padding: 0.2rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            margin-right: 0.4rem;
+            text-transform: uppercase;
+        }
+
+        .faq-summary {
+            background: #f7f0ea;
+            border-radius: 24px;
+            padding: 1.2rem 1.6rem;
+            margin-top: 1rem;
+        }
+
+        .faq-item {
+            display: flex;
+            gap: 0.6rem;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-q {
+            font-weight: 500;
+            color: #402c1e;
+            min-width: 100px;
+        }
+
+        .faq-a {
+            color: #4e3929;
+        }
+
+        .btn-link {
+            display: inline-block;
+            background: #e2844e;
+            color: #fcf6f0;
+            padding: 0.55rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 480;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.1s ease;
+            border: none;
+            box-shadow: 0 4px 10px rgba(170, 80, 30, 0.15);
+            letter-spacing: 0.01em;
+            margin-top: 0.6rem;
+        }
+
+        .btn-link:hover {
+            background: #cf6f3a;
+            transform: scale(1.02);
+            box-shadow: 0 6px 14px rgba(150, 70, 25, 0.2);
+        }
+
+        .btn-link:active {
+            transform: scale(0.97);
+        }
+
+        .legacy-note {
+            margin-top: 1.2rem;
+            padding: 0.8rem 0;
+            border-top: 1px dashed #dac2b0;
+            font-size: 0.9rem;
+            color: #4b382b;
+        }
+
+        .footer-note {
+            margin-top: 1.2rem;
+            text-align: center;
+            font-size: 0.82rem;
+            color: #6b4d38;
+            opacity: 0.7;
+        }
+
+        a {
+            color: #b15f30;
+            text-decoration: none;
+            font-weight: 480;
+            border-bottom: 1px solid #dbaa86;
+            transition: border-color 0.15s;
+        }
+
+        a:hover {
+            border-bottom-color: #884927;
+            color: #884927;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem 0.6rem;
+            }
+            .hero-card, .card-section {
+                padding: 1.6rem 1.2rem;
+                border-radius: 28px;
+            }
+            .hero-card h1 {
+                font-size: 1.7rem;
+                padding-left: 0.9rem;
+            }
+            .intro-grid p {
+                flex: 1 1 100%;
+                border-radius: 40px;
+            }
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+            .faq-item {
+                flex-direction: column;
+                gap: 0.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+    <!-- hero 摘要卡片 -->
+    <div class="hero-card">
+        <h1>麻将胡了 · 资料索引</h1>
+        <div class="sub">信息整理 / 玩法概要 / 使用引导</div>
+        <div class="intro-grid">
+            <p>📄 基于公开资料梳理的参考摘要</p>
+            <p>🎲 以信息索引视角呈现亮点与场景</p>
+            <p>🧩 面向希望快速了解的用户</p>
+        </div>
+        <p style="margin-top: 1rem; font-size: 0.95rem; color: #4f3b2c;">
+            <span class="badge-tag">摘要</span>
+            本文档并非官方说明，而是从玩法构成、界面逻辑与常见问题角度，
+            整理与 <a href="https://china-mjhule.com">麻将胡了</a> 相关的信息切片，
+            帮助读者建立结构化的认知。
+        </p>
+    </div>
+
+    <!-- 亮点卡片 -->
+    <div class="card-section">
+        <h2>🟠 亮点与特点</h2>
+        <ul class="feature-list">
+            <li>⚡ 经典牌型节奏 · 快速对局框架</li>
+            <li>🎯 胡牌逻辑清晰 · 适合策略爱好者</li>
+            <li>📱 多端适配界面 · 操作反馈直接</li>
+            <li>🔁 随机元素与技巧并存 · 重玩性高</li>
+            <li>📊 数据统计面板 · 辅助复盘习惯</li>
+        </ul>
+        <div style="margin-top: 1rem; font-size: 0.95rem;">
+            <span class="badge-tag">亮点</span> 每个对局回合都围绕“胡牌”目标展开，界面元素集中，减少干扰。
+            配合节奏适中的动画与音效提示，适合碎片时间进行策略思考。
+        </div>
+    </div>
+
+    <!-- 使用建议 + 场景 -->
+    <div class="card-section">
+        <h2>📌 使用建议 & 场景</h2>
+        <div class="usage-suggest">
+            <p><span class="badge-tag">建议</span> 初次体验时，建议先熟悉基础胡牌牌型与计分规则，利用内置的教程或说明面板快速上手。</p>
+            <p><span class="badge-tag">场景</span> 通勤间隙、午休时段、茶余饭后——单局时长中等，不强制连续投入，适合自我调节节奏。</p>
+            <p><span class="badge-tag">索引</span> 若需查阅更完整的规则变化，可参考 <a href="https://china-mjhule.com">麻将胡了</a> 提供的版本说明与更新日志，以获取最新细节。</p>
+        </div>
+
+        <div style="margin-top: 1rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 0.5rem;">
+            <span style="background: #e7d4c4; border-radius: 30px; padding: 0.2rem 1rem; font-size: 0.8rem;">#策略</span>
+            <span style="background: #e7d4c4; border-radius: 30px; padding: 0.2rem 1rem; font-size: 0.8rem;">#节奏</span>
+            <span style="background: #e7d4c4; border-radius: 30px; padding: 0.2rem 1rem; font-size: 0.8rem;">#信息索引</span>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要 + 可信说明 -->
+    <div class="card-section">
+        <h2>❓ FAQ 摘要</h2>
+        <div class="faq-summary">
+            <div class="faq-item">
+                <span class="faq-q">规则复杂吗？</span>
+                <span class="faq-a">基础胡牌逻辑采用主流简化框架，新用户可在几轮内掌握核心；进阶策略可通过资料了解。</span>
+            </div>
+            <div class="faq-item">
+                <span class="faq-q">是否需要注册？</span>
+                <span class="faq-a">通常支持快速体验模式，具体以 <a href="https://china-mjhule.com">麻将胡了</a> 页面当前说明为准。</span>
+            </div>
+            <div class="faq-item">
+                <span class="faq-q">是否有数据保留？</span>
+                <span class="faq-a">部分版本提供本地统计数据，不强制上传，可自行选择。</span>
+            </div>
+            <div class="faq-item">
+                <span class="faq-q">信息来源？</span>
+                <span class="faq-a">此页面仅用于信息索引与整理，请以原站最新公示为准。</span>
+            </div>
+        </div>
+        <div class="legacy-note">
+            <span style="font-weight: 450;">可信但克制的说明</span>：
+            本文档不构成任何形式的推荐或承诺，所有信息均基于公开资料归纳。
+            涉及游戏机制、界面细节等请直接查阅 <a href="https://china-mjhule.com">麻将胡了</a> 的官方说明。
+            读者应保持独立判断，理性使用。
+        </div>
+    </div>
+
+    <!-- 温和的引导（非按钮式入口） -->
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 1.5rem; margin: 1.8rem 0 0.8rem;">
+        <span style="font-size: 0.9rem; color: #4f3929; background: #f4e7dd; padding: 0.4rem 1.6rem; border-radius: 60px;">
+            更多资料：<a href="https://china-mjhule.com" style="border-bottom: 1px solid currentColor;">麻将胡了</a>
+        </span>
+        <span style="font-size: 0.9rem; color: #4f3929; background: #f4e7dd; padding: 0.4rem 1.6rem; border-radius: 60px;">
+            索引更新于 2025
+        </span>
+    </div>
+
+    <div class="footer-note">
+        资料整理页面 · 内容仅供参考 · 请以官方信息为准
+    </div>
+</div>
+</body>
+</html>
